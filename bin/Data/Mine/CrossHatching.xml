@@ -1,0 +1,16 @@
+<technique vs="CrossHatching" vsdefines="PERPIXEL" ps="CrossHatching" psdefines="DIFFMAP PERPIXEL">
+    <pass name="base" psdefines="EMISSIVEMAP" />
+    <pass2 name="alpha" psdefines="EMISSIVEMAP" depthwrite="false" blend="alpha" />
+    <pass2 name="alpha" psdefines="EMISSIVEMAP" depthwrite="true" blend="multiply" />
+    <pass2 name="light" vsdefines="NORMALMAP" psdefines="NORMALMAP" depthtest="equal" depthwrite="false" blend="add" />
+    <pass2 name="prepass" vsdefines="NORMALMAP" psdefines="PREPASS NORMALMAP" />
+    <pass2 name="material" psdefines="MATERIAL EMISSIVEMAP" depthtest="equal" depthwrite="false" />
+    <pass2 name="deferred" vsdefines="NORMALMAP" psdefines="DEFERRED NORMALMAP EMISSIVEMAP" />
+    <pass2 name="depth" vs="Depth" ps="Depth" />
+    <pass2 name="shadow" vs="Shadow" ps="Shadow" />
+
+    <pass2 name="postopaque" depthwrite="false" vs="Outline" ps="Outline" cull="cw" />
+
+    <pass2 name="base" vsdefines="BASE" psdefines="BASE"/>
+    <pass name="refract" vsdefines="EDGE" psdefines="EDGE" blend="alpha"/>
+</technique>
